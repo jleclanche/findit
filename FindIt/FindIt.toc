@@ -1,0 +1,12 @@
+## Interface: 30300
+## Title: FindIt
+## Author: Adys
+## Version: 1.3.0
+## Notes: Find items, spells, achievements...
+## eMail: adys.wh+findit@gmail.com
+## URL: http://db.mmo-champion.com
+## LoadOnDemand: 0
+## DefaultState: enabled
+
+LibWeagleTooltip.lua
+FindIt.lua
