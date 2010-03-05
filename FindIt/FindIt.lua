@@ -131,6 +131,17 @@ FindIt.dungeon = {
 	end,
 }
 
+FindIt.faction = {
+	["name"] = "Faction",
+	["max"] = 2000,
+	["getInfo"] = function(self, id)
+		local name = GetFactionInfoByID(id)
+		if name then
+			return name, ("|cffffff00%s|r"):format(name)
+		end
+	end,
+}
+
 FindIt.glyph = {
 	["name"] = "Glyph",
 	["max"] = 3000,
@@ -285,4 +296,9 @@ end
 SLASH_FINDDUNGEON1 = "/finddungeon"
 SlashCmdList["FINDDUNGEON"] = function(msg)
 	FindIt:FindObject("dungeon", msg)
+end
+
+SLASH_FINDFACTION1 = "/findfaction"
+SlashCmdList["FINDFACTION"] = function(msg)
+	FindIt:FindObject("faction", msg)
 end
