@@ -87,7 +87,7 @@ end
 
 FindIt.item = {
 	["name"] = "Item",
-	["max"] = 60000,
+	["max"] = 75000,
 	["getInfo"] = function(self, id)
 		local name, link = GetItemInfo(id)
 		return name, link
@@ -96,7 +96,7 @@ FindIt.item = {
 
 FindIt.spell = {
 	["name"] = "Spell",
-	["max"] = 80000,
+	["max"] = 100000,
 	["getInfo"] = function(self, id)
 		local name = GetSpellInfo(id)
 		return name, GetSpellRealLink(id)
@@ -114,7 +114,7 @@ FindIt.achievement = {
 
 FindIt.creature = {
 	["name"] = "Creature",
-	["max"] = 40000,
+	["max"] = 50000,
 	["getInfo"] = function(self, id)
 		return GetCreatureInfo(id)
 	end,
@@ -160,7 +160,7 @@ FindIt.quest = {
 
 FindIt.talent = {
 	["name"] = "Talent",
-	["max"] = 5000,
+	["max"] = 10000,
 	["getInfo"] = function(self, id)
 		return GetTalentInfo(id)
 	end,
