@@ -9,13 +9,12 @@
 -- Please read the LICENSE file for details
 
 FindIt = select(2, ...)
-
-local VERSION, BUILD, COMPILED, TOC = GetBuildInfo()
-BUILD, TOC = tonumber(BUILD), tonumber(TOC)
-
 FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
 FindIt.VERSION = "1.5.0"
+
+local VERSION, BUILD, COMPILED, TOC = GetBuildInfo()
+BUILD, TOC = tonumber(BUILD), tonumber(TOC)
 
 local PLAIN_LETTER = 8383 -- Plain Letter stationery item id, "always" cached (for enchants)
 
@@ -92,24 +91,6 @@ local function GetQuestInfo(id)
 	return name, link
 end
 
-FindIt.item = {
-	["name"] = "Item",
-	["max"] = 75000,
-	["getInfo"] = function(self, id)
-		local name, link = GetItemInfo(id)
-		return name, link
-	end,
-}
-
-FindIt.spell = {
-	["name"] = "Spell",
-	["max"] = 100000,
-	["getInfo"] = function(self, id)
-		local name = GetSpellInfo(id)
-		return name, GetSpellRealLink(id)
-	end,
-}
-
 FindIt.achievement = {
 	["name"] = "Achievement",
 	["max"] = 10000,
@@ -168,11 +149,29 @@ FindIt.glyph = {
 	end,
 }
 
+FindIt.item = {
+	["name"] = "Item",
+	["max"] = 75000,
+	["getInfo"] = function(self, id)
+		local name, link = GetItemInfo(id)
+		return name, link
+	end,
+}
+
 FindIt.quest = {
 	["name"] = "Quest",
 	["max"] = 35000,
 	["getInfo"] = function(self, id)
 		return GetQuestInfo(id)
+	end,
+}
+
+FindIt.spell = {
+	["name"] = "Spell",
+	["max"] = 100000,
+	["getInfo"] = function(self, id)
+		local name = GetSpellInfo(id)
+		return name, GetSpellRealLink(id)
 	end,
 }
 
