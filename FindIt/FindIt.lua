@@ -17,6 +17,8 @@ FindIt.NAME = "FindIt"
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
 FindIt.VERSION = "1.3.0"
 
+local PLAIN_LETTER = 8383 -- Plain Letter stationery item id, "always" cached (for enchants)
+
 function FindIt:Print(...)
 	print(self.CNAME.. ":", ...)
 end
@@ -27,7 +29,7 @@ function FindIt:Help()
 		"* /finditem thunderfury - find by name (case insensitive)\n",
 		"* /finditem 12345 - find by id\n",
 		"* /finditem 123-987 - find by id range (swap ids for reverse search)\n",
-		"Also works with /findspell, /findach, /findcreature, /findglyph, /findtalent and /findtitle\n"
+		"Also works with /findspell, /findach, /findcreature, /findglyph, /findtalent, /finddungeon, /findenchant and /findtitle\n"
 	)
 	self:Print("IMPORTANT: /finditem and /findcreature can only find cached items and NPCs (seen since last patch).")
 	self:Print(self.NAME, self.VERSION, "by Adys.")
@@ -125,6 +127,17 @@ FindIt.dungeon = {
 	["max"] = 1000,
 	["getInfo"] = function(self, id)
 		local name = GetLFGDungeonInfo(id)
+		if name then
+			return name, ("|cffffff00%s|r"):format(name)
+		end
+	end,
+}
+
+FindIt.enchant = {
+	["name"] = "Enchant",
+	["max"] = 1000,
+	["getInfo"] = function(self, id)
+		local name = GetTooltipLine(("item:%i:%i"):format(PLAIN_LETTER, id), 2)
 		if name then
 			return name, ("|cffffff00%s|r"):format(name)
 		end
@@ -296,6 +309,11 @@ end
 SLASH_FINDDUNGEON1 = "/finddungeon"
 SlashCmdList["FINDDUNGEON"] = function(msg)
 	FindIt:FindObject("dungeon", msg)
+end
+
+SLASH_FINDENCHANT1 = "/findenchant"
+SlashCmdList["FINDENCHANT"] = function(msg)
+	FindIt:FindObject("enchant", msg)
 end
 
 SLASH_FINDFACTION1 = "/findfaction"
