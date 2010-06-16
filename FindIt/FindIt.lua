@@ -121,7 +121,7 @@ FindIt.dungeon = {
 
 FindIt.enchant = {
 	["name"] = "Enchant",
-	["max"] = 1000,
+	["max"] = 10000,
 	["getInfo"] = function(self, id)
 		local name = LibWeagleTooltip:GetTooltipLine(("item:%i:%i"):format(PLAIN_LETTER, id), 2)
 		if name then
