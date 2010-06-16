@@ -8,12 +8,12 @@
 -- FindIt is licensed under BSD
 -- Please read the LICENSE file for details
 
-FindIt = {}
+FindIt = select(2, ...)
 
 local VERSION, BUILD, COMPILED, TOC = GetBuildInfo()
 BUILD, TOC = tonumber(BUILD), tonumber(TOC)
 
-FindIt.NAME = "FindIt"
+FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
 FindIt.VERSION = "1.3.0"
 
