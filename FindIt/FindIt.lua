@@ -63,7 +63,7 @@ local function GetGlyphInfo(id)
 	return name, link
 end
 
-function FindIt:getGUID()
+local function GetGUIDFormat()
 	if BUILD < 10522 then
 		return "0xF13000%04X000000" -- TBC/WLK format
 	elseif VERSION == "4.0.0" then
@@ -75,7 +75,7 @@ end
 
 local function GetCreatureInfo(id)
 	id = tonumber(id)
-	local guid = FindIt:getGUID():format(id)
+	local guid = GetGUIDFormat():format(id)
 	local name = GetTooltipLine("unit:" .. guid, 1) -- FIXME we are calling a new tooltip.. this is slow
 	if not name then return end
 	local link = ("|cffffff00|Hunit:%s:%s|h[%s]|h|r"):format(guid, name, name)
