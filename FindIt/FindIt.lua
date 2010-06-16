@@ -3,7 +3,7 @@
 ------------
 -- Find achievements, spells and cached items
 -- easily from chat commands.
--- Feedback, questions, adys@mmo-champion.com
+-- Feedback, questions, adys.wh+findit@gmail.com
 
 -- FindIt is licensed under BSD
 -- Please read the LICENSE file for details
@@ -15,7 +15,7 @@ BUILD, TOC = tonumber(BUILD), tonumber(TOC)
 
 FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
-FindIt.VERSION = "1.3.0"
+FindIt.VERSION = "1.5.0"
 
 local PLAIN_LETTER = 8383 -- Plain Letter stationery item id, "always" cached (for enchants)
 
