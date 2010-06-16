@@ -46,7 +46,7 @@ local function GetSpellRealLink(id) -- GetSpellLink is broken
 end
 
 local function GetTalentInfo(id)
-	local name, rank = GetTooltipLine("talent:" .. id, 1)
+	local name, rank = LibWeagleTooltip:GetTooltipLine("talent:" .. id, 1)
 	if name == "Word of Recall (OLD)" then return end -- Invalid tooltips' names.. go figure.
 --	local _, _, ranks = string.find(rank, "Rank 0/(%d)")
 	local link = ("|cff4e96f7|Htalent:%i:-1|h[%s]|h|r"):format(id, name)
@@ -55,7 +55,7 @@ local function GetTalentInfo(id)
 end
 
 local function GetGlyphInfo(id)
-	local name = GetTooltipLine("glyph:21:" .. id, 1) -- Always a Major Glyph
+	local name = LibWeagleTooltip:GetTooltipLine("glyph:21:" .. id, 1) -- Always a Major Glyph
 	if name == "Empty" then return end -- All invalid tooltips are shown as an empty glyph slot
 	local link = ("|cff66bbff|Hglyph:21:%i|h[%s]|h|r"):format(id, name)
 	
@@ -75,7 +75,7 @@ end
 local function GetCreatureInfo(id)
 	id = tonumber(id)
 	local guid = GetGUIDFormat():format(id)
-	local name = GetTooltipLine("unit:" .. guid, 1) -- FIXME we are calling a new tooltip.. this is slow
+	local name = LibWeagleTooltip:GetTooltipLine("unit:" .. guid, 1) -- FIXME we are calling a new tooltip.. this is slow
 	if not name then return end
 	local link = ("|cffffff00|Hunit:%s:%s|h[%s]|h|r"):format(guid, name, name)
 	
@@ -83,7 +83,7 @@ local function GetCreatureInfo(id)
 end
 
 local function GetQuestInfo(id)
-	local name = GetTooltipLine("quest:" .. id, 1)
+	local name = LibWeagleTooltip:GetTooltipLine("quest:" .. id, 1)
 	if not name then return end
 	local level = UnitLevel("player") -- FIXME impossible to get a quest level
 	local link = ("|cffffff00|Hquest:%i:%i|h[%s]|h|r"):format(id, level, name)
@@ -123,7 +123,7 @@ FindIt.enchant = {
 	["name"] = "Enchant",
 	["max"] = 1000,
 	["getInfo"] = function(self, id)
-		local name = GetTooltipLine(("item:%i:%i"):format(PLAIN_LETTER, id), 2)
+		local name = LibWeagleTooltip:GetTooltipLine(("item:%i:%i"):format(PLAIN_LETTER, id), 2)
 		if name then
 			return name, ("|cffffff00%s|r"):format(name)
 		end

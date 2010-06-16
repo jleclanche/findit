@@ -22,7 +22,7 @@ function LibWeagleTooltip:Prepare(link)
 	LWTT:SetHyperlink(link)
 end
 
-function LibWeagleTooltip:HideTooltip()
+function LibWeagleTooltip:Hide()
 	LWTT:SetOwner(UIParent, "ANCHOR_PRESERVE")
 	LWTT:Hide()
 end
