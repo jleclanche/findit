@@ -102,7 +102,7 @@ FindIt.achievement = {
 
 FindIt.creature = {
 	["name"] = "Creature",
-	["max"] = 50000,
+	["max"] = 60000,
 	["getInfo"] = function(self, id)
 		return GetCreatureInfo(id)
 	end,
@@ -177,7 +177,7 @@ FindIt.spell = {
 
 FindIt.talent = {
 	["name"] = "Talent",
-	["max"] = 10000,
+	["max"] = 20000,
 	["getInfo"] = function(self, id)
 		return GetTalentInfo(id)
 	end,
