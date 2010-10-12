@@ -269,6 +269,9 @@ end
 
 SLASH_FINDITEM1 = "/finditem"
 SlashCmdList["FINDITEM"] = function(msg)
+	if not tonumber(msg) and TOC >= 40000 then
+		return FindIt:Print("Non-ID lookups for items are disabled in the 4.x client due to a bug in the WoW API. Blame Blizzard.")
+	end
 	FindIt:FindObject("item", msg)
 end
 
