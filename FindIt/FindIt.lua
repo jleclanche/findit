@@ -11,7 +11,7 @@
 FindIt = select(2, ...)
 FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
-FindIt.VERSION = "1.5.0"
+FindIt.VERSION = "1.5.1"
 
 local VERSION, BUILD, COMPILED, TOC = GetBuildInfo()
 BUILD, TOC = tonumber(BUILD), tonumber(TOC)
