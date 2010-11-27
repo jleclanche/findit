@@ -65,7 +65,7 @@ end
 local function GetGUIDFormat()
 	if BUILD < 10522 then
 		return "0xF13000%04X000000" -- TBC/WLK format
-	elseif VERSION == "4.0.0" then
+	elseif TOC >= 40000 then
 		return "0xF130%04X00000000" -- cataclysm format
 	else
 		return "0xF13000%04X000000" -- 3.3.x format
