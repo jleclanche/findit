@@ -4,7 +4,7 @@
 ## Version: 1.6.0
 ## Notes: Find items, spells, achievements...
 ## eMail: adys.wh@gmail.com
-## URL: http://github.com/
+## URL: http://github.com/adys/findit
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 
