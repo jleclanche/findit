@@ -82,6 +82,16 @@ local function GetCreatureInfo(id)
 	return name, link
 end
 
+local function GetInstanceLockInfo(id)
+	local guid = UnitGUID("player"):sub(3) -- Remove 0x prefix
+	local link = ("instancelock:%s:%i:0:0"):format(guid, id)
+	local name = LibWeagleTooltip:GetTooltipLine(link, 1)
+	if not name then return end
+	
+	local _, name = name:match("^" .. INSTANCE_LOCK_SS:gsub("%%s", "(.+)"))
+	return name, ("|cffff8000|H%s|h[%s]|h|r"):format(link, name)
+end
+
 local function GetQuestInfo(id)
 	local name = LibWeagleTooltip:GetTooltipLine("quest:" .. id, 1)
 	if not name then return end
@@ -148,6 +158,14 @@ FindIt.glyph = {
 	["max"] = 3000,
 	["getInfo"] = function(self, id)
 		return GetGlyphInfo(id)
+	end,
+}
+
+FindIt.instance = {
+	["name"] = "Instance",
+	["max"] = 1500,
+	["getInfo"] = function(self, id)
+		return GetInstanceLockInfo(id)
 	end,
 }
 
@@ -328,4 +346,9 @@ end
 SLASH_FINDFACTION1 = "/findfaction"
 SlashCmdList["FINDFACTION"] = function(msg)
 	FindIt:FindObject("faction", msg)
+end
+
+SLASH_FINDINSTANCE1 = "/findinstance"
+SlashCmdList["FINDINSTANCE"] = function(msg)
+	FindIt:FindObject("instance", msg)
 end
