@@ -95,8 +95,10 @@ FindIt.achievement = {
 	["name"] = "Achievement",
 	["max"] = 10000,
 	["getInfo"] = function(self, id)
-		local name = select(2, GetAchievementInfo(id))
-		return name, GetAchievementLink(id)
+		if pcall(GetAchievementInfo, id) then
+			local name = select(2, GetAchievementInfo(id))
+			return name, GetAchievementLink(id)
+		end
 	end,
 }
 
