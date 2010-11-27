@@ -5,7 +5,7 @@
 -- easily from chat commands.
 -- Feedback, questions, adys.wh+findit@gmail.com
 
--- FindIt is licensed under BSD
+-- FindIt is licensed under MIT
 -- Please read the LICENSE file for details
 
 FindIt = select(2, ...)
