@@ -150,7 +150,7 @@ FindIt.item = {
 
 FindIt.quest = {
 	name = "Quest",
-	max = 35000,
+	max = 50000,
 	getInfo = function(self, id)
 		local name = LibWeagleTooltip:GetTooltipLine("quest:" .. id, 1)
 		if not name then return end
