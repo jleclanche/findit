@@ -28,21 +28,10 @@ function FindIt:Help()
 		"* /finditem thunderfury - find by name (case insensitive)\n",
 		"* /finditem 12345 - find by id\n",
 		"* /finditem 123-987 - find by id range (swap ids for reverse search)\n",
-		"Also works with /findspell, /findach, /findcreature, /findglyph, /findtalent, /finddungeon, /findenchant, /findinstance and /findtitle\n"
+		"Also works with /findspell, /findach, /findcreature, /findglyph, /findtalent, /finddungeon, /findenchant, /findinstance, /findcurrency and /findtitle\n"
 	)
 	self:Print("IMPORTANT: /finditem and /findcreature can only find cached items and NPCs (seen since last patch).")
 	self:Print(self.NAME, self.VERSION, "by Adys.")
-end
-
-local function GetSpellRealLink(id) -- GetSpellLink is broken
-	local name = GetSpellInfo(id)
-	if not name then return end
-	local link = GetSpellLink(id)
-	
-	if not link then -- Spell exists but is unlinkable
-		link = "|cff71d5ff|Hspell:" .. id .. "|h[" .. name .. "]|h|r"
-	end
-	return link
 end
 
 local function GetGUIDFormat()
@@ -166,7 +155,10 @@ FindIt.spell = {
 	max = 100000,
 	getInfo = function(self, id)
 		local name = GetSpellInfo(id)
-		return name, GetSpellRealLink(id)
+		if name then
+			local link =  ("|cff71d5ff|Hspell:%i|h[%s]|h|r"):format(id, name)
+			return name, link
+		end
 	end,
 }
 
