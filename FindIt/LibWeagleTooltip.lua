@@ -4,27 +4,32 @@
 -- Easily scan and match a tooltip's lines
 -- Feedback, questions, adys@mmo-champion.com
 
--- LibWeagleTooltip is licensed under BSD
+-- LibWeagleTooltip is licensed under MIT
 -- Please read the LICENSE file for details
 
-LibWeagleTooltip = {}
+
+local MAJOR = 'LibWeagleTooltip-2.0'
+local MINOR = 20
+
+local LibWeagleTooltip, oldminor = LibStub:NewLibrary(MAJOR, MINOR)
+if not LibWeagleTooltip then return end -- no upgrade needed
+
 LibWeagleTooltip.tt = CreateFrame("GameTooltip", "WeagleLibTooltip", UIParent, "GameTooltipTemplate")
-local LWTT = LibWeagleTooltip.tt
 
 LibWeagleTooltip.tt:SetOwner(UIParent, "ANCHOR_PRESERVE")
 LibWeagleTooltip.tt:SetPoint("CENTER", "UIParent")
 LibWeagleTooltip.tt:Hide()
 
 function LibWeagleTooltip:Prepare(link)
-	LWTT:SetOwner(UIParent, "ANCHOR_PRESERVE")
-	LWTT:SetHyperlink("spell:1:LibWeagleTooltip")
-	LWTT:Show()
-	LWTT:SetHyperlink(link)
+	self.tt:SetOwner(UIParent, "ANCHOR_PRESERVE")
+	self.tt:SetHyperlink("spell:1:LibWeagleTooltip")
+	self.tt:Show()
+	self.tt:SetHyperlink(link)
 end
 
 function LibWeagleTooltip:Hide()
-	LWTT:SetOwner(UIParent, "ANCHOR_PRESERVE")
-	LWTT:Hide()
+	self.tt:SetOwner(UIParent, "ANCHOR_PRESERVE")
+	self.tt:Hide()
 end
 
 function LibWeagleTooltip:ScanTooltip(link)
