@@ -34,15 +34,7 @@ function FindIt:Help()
 	self:Print(self.NAME, self.VERSION, "by Adys.")
 end
 
-local function GetGUIDFormat()
-	if BUILD < 10522 then
-		return "0xF13000%04X000000" -- TBC/WLK format
-	elseif TOC >= 40000 then
-		return "0xF130%04X00000000" -- cataclysm format
-	else
-		return "0xF13000%04X000000" -- 3.3.x format
-	end
-end
+
 
 FindIt.achievement = {
 	name = "Achievement",
@@ -60,13 +52,21 @@ FindIt.creature = {
 	max = 60000,
 	getInfo = function(self, id)
 		id = tonumber(id)
-		local guid = GetGUIDFormat():format(id)
+		local guid = self.guidfmt:format(id)
 		local name = LibWeagleTooltip:GetTooltipLine("unit:" .. guid, 1) -- FIXME we are calling a new tooltip.. this is slow
 		if not name then return end
 		local link = ("|cffffff00|Hunit:%s:%s|h[%s]|h|r"):format(guid, name, name)
 		
 		return name, link
 	end,
+	guidfmt = (function()
+		if BUILD < 10522 then
+			return "0xF13000%04X000000" -- TBC/WLK format
+		elseif TOC < 40000 then
+			return "0xF13000%04X000000" -- 3.3.x format
+		end
+		return "0xF130%04X00000000" -- cataclysm format
+	end)(),
 }
 
 FindIt.currency = {
