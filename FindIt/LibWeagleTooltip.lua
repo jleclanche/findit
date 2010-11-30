@@ -2,7 +2,7 @@
 -- LibWeagleTooltip --
 ----------------------
 -- Easily scan and match a tooltip's lines
--- Feedback, questions, adys@mmo-champion.com
+-- Feedback, questions, adys.wh@gmail.com
 
 -- LibWeagleTooltip is licensed under MIT
 -- Please read the LICENSE file for details
