@@ -148,6 +148,20 @@ FindIt.item = {
 	end,
 }
 
+FindIt.map = {
+	name = "Map",
+	max = 2000,
+	getInfo = function(self, id)
+		SetMapByID(4) -- Reset the map to Durotar
+		local durotar = GetMapInfo()
+		SetMapByID(id)
+		local name = GetMapInfo()
+		if id == 4 or name ~=durotar then
+			return name, ("|cffffff00%s|r"):format(name)
+		end
+	end,
+}
+
 FindIt.quest = {
 	name = "Quest",
 	max = 50000,
@@ -329,6 +343,12 @@ SLASH_FINDSPELL1 = "/findspell"
 SlashCmdList["FINDSPELL"] = function(msg)
 	FindIt:FindObject("spell", msg)
 end
+
+SLASH_FINDMAP1 = "/findmap"
+SlashCmdList["FINDMAP"] = function(msg)
+	FindIt:FindObject("map", msg)
+end
+
 
 SLASH_FINDTALENT1 = "/findtalent"
 SlashCmdList["FINDTALENT"] = function(msg)
