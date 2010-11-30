@@ -69,6 +69,15 @@ FindIt.creature = {
 	end,
 }
 
+FindIt.currency = {
+	name = "Currency",
+	max = 1000,
+	getInfo = function(self, id)
+		local name = GetCurrencyInfo(id)
+		return name, ("|cffffff00%s|r"):format(name)
+	end,
+}
+
 FindIt.dungeon = {
 	name = "Dungeon",
 	max = 1000,
@@ -266,6 +275,11 @@ end
 SLASH_FINDCREATURE1 = "/findcreature"
 SlashCmdList["FINDCREATURE"] = function(msg)
 	FindIt:FindObject("creature", msg)
+end
+
+SLASH_FINDCURRENCY1 = "/findcurrency"
+SlashCmdList["FINDCURRENCY"] = function(msg)
+	FindIt:FindObject("currency", msg)
 end
 
 SLASH_FINDDUNGEON1 = "/finddungeon"
