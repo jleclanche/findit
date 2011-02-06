@@ -156,7 +156,7 @@ FindIt.map = {
 		local durotar = GetMapInfo()
 		SetMapByID(id)
 		local name = GetMapInfo()
-		if id == 4 or name ~=durotar then
+		if id == 4 or name ~= durotar then
 			return name, ("|cffffff00%s|r"):format(name)
 		end
 	end,
