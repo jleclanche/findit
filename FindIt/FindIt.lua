@@ -11,7 +11,7 @@
 FindIt = select(2, ...)
 FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
-FindIt.VERSION = "1.7.0"
+FindIt.VERSION = "1.8.0"
 
 local LibWeagleTooltip = LibStub("LibWeagleTooltip-2.0")
 
