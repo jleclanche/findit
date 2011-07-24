@@ -76,7 +76,8 @@ FindIt.currency = {
 	max = 1000,
 	getInfo = function(self, id)
 		local name = GetCurrencyInfo(id)
-		return name, ("|cffffff00%s|r"):format(name)
+		local link = GetCurrencyLink(id)
+		return name, link
 	end,
 }
 
