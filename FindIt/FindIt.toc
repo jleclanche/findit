@@ -1,9 +1,9 @@
-## Interface: 40200
+## Interface: 40300
 ## Title: FindIt
 ## Author: Adys
-## Version: 1.8.0
+## Version: 1.8.1
 ## Notes: Find items, spells, achievements...
-## eMail: adys.wh@gmail.com
+## eMail: jerome.leclanche+findit@gmail.com
 ## URL: http://github.com/adys/findit
 ## LoadOnDemand: 0
 ## DefaultState: enabled
