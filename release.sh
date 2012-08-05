@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 TOC="FindIt/FindIt.toc"
 VERSIONTAG="## Version: "
