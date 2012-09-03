@@ -49,6 +49,17 @@ FindIt.achievement = {
 	end,
 }
 
+FindIt.area = {
+	name = "Area",
+	max = 1000,
+	getInfo = function(self, id)
+		local name = GetMapNameByID(id)
+		if name then
+			return name, ("|cffffff00%s|r"):format(name)
+		end
+	end,
+}
+
 FindIt.creature = {
 	name = "Creature",
 	max = 60000,
@@ -287,6 +298,11 @@ end
 SLASH_FINDACH1, SLASH_FINDACH2 = "/findach", "/findachievement"
 SlashCmdList["FINDACH"] = function(msg)
 	FindIt:FindObject("achievement", msg)
+end
+
+SLASH_FINDAREA1 = "/findarea"
+SlashCmdList["FINDAREA"] = function(msg)
+	FindIt:FindObject("area", msg)
 end
 
 SLASH_FINDCREATURE1 = "/findcreature"
