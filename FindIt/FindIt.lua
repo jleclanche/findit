@@ -129,10 +129,16 @@ FindIt.glyph = {
 	name = "Glyph",
 	max = 3000,
 	getInfo = function(self, id)
-		local name = LibWeagleTooltip:GetTooltipLine("glyph:21:" .. id, 1) -- Always a Major Glyph
-		if name == "Empty" then return end -- All invalid tooltips are shown as an empty glyph slot
-		local link = ("|cff66bbff|Hglyph:21:%i|h[%s]|h|r"):format(id, name)
-		
+		local name, link
+		if TOC > 50000 then
+			link = GetGlyphLinkByID(id)
+			if link == "" then return end
+			name = link:match("%b[]"):sub(2, -2)
+		else
+			name = LibWeagleTooltip:GetTooltipLine("glyph:21:" .. id, 1) -- Always a Major Glyph
+			if name == "Empty" then return end -- All invalid tooltips are shown as an empty glyph slot
+			link = ("|cff66bbff|Hglyph:21:%i|h[%s]|h|r"):format(id, name)
+		end
 		return name, link
 	end,
 }
