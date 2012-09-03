@@ -69,7 +69,7 @@ FindIt.creature = {
 		local name = LibWeagleTooltip:GetTooltipLine("unit:" .. guid, 1) -- FIXME we are calling a new tooltip.. this is slow
 		if not name then return end
 		local link = ("|cffffff00|Hunit:%s:%s|h[%s]|h|r"):format(guid, name, name)
-		
+
 		return name, link
 	end,
 	guidfmt = (function()
@@ -151,7 +151,7 @@ FindIt.instance = {
 		local link = ("instancelock:%s:%i:0:0"):format(guid, id)
 		local name = LibWeagleTooltip:GetTooltipLine(link, 1)
 		if not name then return end
-		
+
 		local _, name = name:match("^" .. INSTANCE_LOCK_SS:gsub("%%s", "(.+)"))
 		return name, ("|cffff8000|H%s|h[%s]|h|r"):format(link, name)
 	end,
@@ -188,7 +188,7 @@ FindIt.quest = {
 		if not name then return end
 		local level = UnitLevel("player") -- FIXME impossible to get a quest level
 		local link = ("|cffffff00|Hquest:%i:%i|h[%s]|h|r"):format(id, level, name)
-		
+
 		return name, link
 	end,
 }
@@ -276,7 +276,7 @@ function FindIt:FindObject(ftype, msg)
 	if not msg or msg == "" then return self:Print("Usage: /find"..ftype.." (id|[min-max]|name) - /findit for help" ) end
 	local obj = FindIt[ftype]
 	found = {}
-	
+
 	if msg:match("%d+%-%d+") then
 		local first, last = msg:match("(%d+)%-(%d+)")
 		found = findrange(obj, first, last)
@@ -288,7 +288,7 @@ function FindIt:FindObject(ftype, msg)
 	else
 		found = findname(obj, msg)
 	end
-	
+
 	for k, v in pairs(found) do
 		self:Print(obj.name .. " #" .. v.id, v.link)
 	end
