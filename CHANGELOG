@@ -1,0 +1,69 @@
+FindIt 1.9.0:
+ * Add /findarea
+ * /findcurrency now works with all currencies, not just those already seen by the character
+ * Update TOC for 5.0.1
+ * Fix glyph and talent lookups for TOC > 50000
+ * Re-enable item non-id matching as they no longer crash/dc
+
+FindIt 1.8.0:
+ * Add /findcurrency (only currencies you've seen at least once can be queried)
+
+FindIt 1.7.0:
+ * Add /findmap, using a GetMapInfo hack
+ * Update TOC for 4.1.0
+ * Clean up LibWeagleTooltip and use LibStub to include it
+ * Do not distribute the LICENSE file outside of the git repo
+ * Couple more code cleanups
+
+FindIt 1.6.0:
+ * Add /findinstance, using instance lock backend
+ * Fix /findach support for 4.x.
+ * Fix /findcreature support for 4.0.3 and beyond.
+ * Clean up some more code for an overall size reduction
+
+FindIt 1.5.1:
+ * Disable non-id lookups for items in 4.x client. This makes the client hang due to a bug with the new item loading system.
+ * Bump max IDs to match 4.x data.
+ * The addon is now distributed under the very permissive MIT license.
+
+FindIt 1.5.0:
+ * Add /findenchant
+ * Add support for 4.0 GUIDs
+ * Clean up LibWeagleTooltip
+ * Various bugfixes
+
+FindIt 1.4.0:
+ * Add /findfaction
+ * Fix packaging (again)
+
+FindIt 1.3.0:
+ * Prevent non-id lookups on quests
+ * Fixed creature lookups again
+ * Improved performance of all lookups
+ * Use the player's level for quest levels
+ * Prettified /findtitle output
+ * Add /finddungeon, using the new LFG dungeon list
+ * Remove TODO
+
+FindIt 1.2.2:
+ * Update TOC for 3.3.0 (30300)
+
+FindIt 1.2.1:
+ * Fix NPC GUIDs (/findcreature) for 3.3
+ * Fix versions
+
+FindIt 1.2:
+ * Add /findtitle
+ * Fix packaging
+
+FindIt 1.1.1:
+ * Fix broken /finditem
+ * Update TODO
+ * Remove duplicate license entry
+
+FindIt 1.1:
+ * Integrate LibWeagleTooltip
+ * Add /findcreature
+ * Add /findglyph
+ * Add /findtalent
+ * Clarify /finditem and /findcreature only work with cached objects.
