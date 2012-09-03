@@ -3,7 +3,7 @@
 ------------
 -- Find achievements, spells and cached items
 -- easily from chat commands.
--- Feedback, questions, adys.wh+findit@gmail.com
+-- Feedback, questions, jerome.leclanche+findit@gmail.com
 
 -- FindIt is licensed under MIT
 -- Please read the LICENSE file for details
