@@ -204,9 +204,9 @@ FindIt.talent = {
 	max = 20000,
 	getInfo = function(self, id)
 		local name, rank = LibWeagleTooltip:GetTooltipLine("talent:" .. id, 1)
-		if name == "Word of Recall (OLD)" then return end -- Invalid tooltips' names.. go figure.
+		if not name or name == "Word of Recall (OLD)" then return end -- Invalid tooltips' names.. go figure.
 		local link = ("|cff4e96f7|Htalent:%i:-1|h[%s]|h|r"):format(id, name)
-		
+
 		return name, link
 	end,
 }
