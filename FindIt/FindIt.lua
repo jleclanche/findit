@@ -195,7 +195,7 @@ FindIt.quest = {
 
 FindIt.spell = {
 	name = "Spell",
-	max = 100000,
+	max = 150000,
 	getInfo = function(self, id)
 		local name = GetSpellInfo(id)
 		if name then
