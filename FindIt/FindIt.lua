@@ -295,21 +295,14 @@ local function findrange(obj, first, last)
 	local ret = {}
 	local name, link
 	local id = first
+	local i = 1
 	if first > last then
-			local range = first - last
-			for i = 0, range do
-				name, link = obj:getInfo(id)
-				if name then
-					table.insert(ret, { id = id, link = link })
-				end
-				id = id - 1
-			end
-	else
-		for id = first, last do
-			name, link = obj:getInfo(id)
-			if name then
-				table.insert(ret, { id = id, link = link })
-			end
+		i = -1
+	end
+	for id = first, last, i do
+		name, link = obj:getInfo(id)
+		if name then
+			table.insert(ret, { id = id, link = link })
 		end
 	end
 	return ret
