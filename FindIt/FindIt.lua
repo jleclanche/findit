@@ -1,8 +1,8 @@
 ------------
 -- FindIt --
 ------------
--- Find achievements, spells and cached items
--- easily from chat commands.
+-- Find items, spells, achievements and several more
+-- from the chat window.
 -- Feedback, questions, jerome.leclanche+findit@gmail.com
 
 -- FindIt is licensed under MIT
@@ -12,6 +12,7 @@ FindIt = select(2, ...)
 FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
 FindIt.VERSION = "1.9.0"
+FindIt.commands = {}
 
 local LibWeagleTooltip = LibStub("LibWeagleTooltip-2.1")
 
@@ -27,14 +28,27 @@ end
 
 function FindIt:Help()
 	self:Print(
-		"Find spells, achievements and cached items easily.\n",
-		"* /finditem thunderfury - find by name (case insensitive)\n",
-		"* /finditem 12345 - find by id\n",
-		"* /finditem 123-987 - find by id range (swap ids for reverse search)\n",
-		"Also works with /findspell, /findach, /findcreature, /findglyph, /findtalent, /finddungeon, /findenchant, /findinstance, /findcurrency and /findtitle\n"
+		"Find items, spells, achievements and several more from the chat window.\n",
+		"* /findspell frostbolt - find by name (case insensitive)\n",
+		"* /findspell 1234 - find by id\n",
+		"* /findspell 123-987 - find by id range (swap ids for reverse search)\n",
+		"* /findspell . - list everything (match any string). Can be slow!\n",
+		"Also works with /findspell, /findach and more. Type /findit list for a full list.\n"
 	)
 	self:Print("IMPORTANT: /finditem and /findcreature can only find cached items and NPCs (seen since last patch).")
 	self:Print(self.NAME, self.VERSION, "by Adys.")
+end
+
+function FindIt:List()
+	local cmd, cmd2
+	for k, v in pairs(self.commands) do
+		cmd = "/find" .. v
+		cmd2 = _G["SLASH_FIND" .. v:upper() .. "2"]
+		if cmd2 then
+			cmd = ("%s, %s"):format(cmd, cmd2)
+		end
+		self:Print(cmd, ("(%s)"):format(self[v].file))
+	end
 end
 
 function FindIt:Register(type, func)
@@ -46,11 +60,13 @@ function FindIt:Register(type, func)
 		end
 	end
 	SlashCmdList["FIND" .. utype] = func
+	table.insert(self.commands, type)
 end
 
 
 FindIt.achievement = {
 	name = "Achievement",
+	file = "Achievement.dbc",
 	max = 10000,
 	getInfo = function(self, id)
 		if pcall(GetAchievementInfo, id) then
@@ -64,6 +80,7 @@ SLASH_FINDACHIEVEMENT2 = "/findach"
 
 FindIt.area = {
 	name = "Area",
+	file = "Area.dbc",
 	max = 1000,
 	getInfo = function(self, id)
 		local name = GetMapNameByID(id)
@@ -74,8 +91,9 @@ FindIt.area = {
 }
 FindIt:Register("area")
 
-FindIt.battlepetability = { -- BattlePetAbility.db2
+FindIt.battlepetability = {
 	name = "Battle Pet Ability",
+	file = "BattlePetAbility.db2",
 	max = 3000,
 	getInfo = function(self, id)
 		local id, name, icon = C_PetBattles.GetAbilityInfoByID(id)
@@ -91,6 +109,7 @@ SLASH_FINDBATTLEPETABILITY2 = "/findbpa"
 
 FindIt.creature = {
 	name = "Creature",
+	file = "creaturecache.wdb",
 	max = 60000,
 	getInfo = function(self, id)
 		id = tonumber(id)
@@ -114,6 +133,7 @@ FindIt:Register("creature")
 
 FindIt.currency = {
 	name = "Currency",
+	file = "Currency.dbc",
 	max = 1000,
 	getInfo = function(self, id)
 		local name = GetCurrencyInfo(id)
@@ -125,6 +145,7 @@ FindIt:Register("currency")
 
 FindIt.dungeon = {
 	name = "Dungeon",
+	file = "LfgDungeons.dbc",
 	max = 1000,
 	getInfo = function(self, id)
 		local name = GetLFGDungeonInfo(id)
@@ -137,6 +158,7 @@ FindIt:Register("dungeon")
 
 FindIt.enchant = {
 	name = "Enchant",
+	file = "SpellItemEnchantment.dbc",
 	max = 10000,
 	getInfo = function(self, id)
 		local name = LibWeagleTooltip:GetTooltipLine(("item:%i:%i"):format(PLAIN_LETTER, id), 2)
@@ -149,6 +171,7 @@ FindIt:Register("enchant")
 
 FindIt.faction = {
 	name = "Faction",
+	file = "Faction.dbc",
 	max = 2000,
 	getInfo = function(self, id)
 		local name = GetFactionInfoByID(id)
@@ -161,6 +184,7 @@ FindIt:Register("faction")
 
 FindIt.glyph = {
 	name = "Glyph",
+	file = "GlyphProperties.dbc",
 	max = 3000,
 	getInfo = function(self, id)
 		local name, link
@@ -180,6 +204,7 @@ FindIt:Register("instance")
 
 FindIt.instance = {
 	name = "Instance",
+	file = "Map.dbc",
 	max = 1500,
 	getInfo = function(self, id)
 		local guid = UnitGUID("player"):sub(3) -- Remove 0x prefix
@@ -194,6 +219,7 @@ FindIt.instance = {
 
 FindIt.item = {
 	name = "Item",
+	file = "itemcache.wdb, Item.dbc, Item.db2, Item.adb, Item-sparse.db2, Item-sparse.db2",
 	max = 75000,
 	getInfo = function(self, id)
 		local name, link = GetItemInfo(id)
@@ -209,6 +235,7 @@ end)
 
 FindIt.map = {
 	name = "Map",
+	file = "WorldMapArea.dbc",
 	max = 2000,
 	getInfo = function(self, id)
 		local name
@@ -232,6 +259,7 @@ FindIt:Register("map")
 
 FindIt.quest = {
 	name = "Quest",
+	file = "questcache.wdb",
 	max = 50000,
 	getInfo = function(self, id)
 		local name = LibWeagleTooltip:GetTooltipLine("quest:" .. id, 1)
@@ -251,6 +279,7 @@ end)
 
 FindIt.spell = {
 	name = "Spell",
+	file = "Spell.dbc",
 	max = 150000,
 	getInfo = function(self, id)
 		local name = GetSpellInfo(id)
@@ -264,6 +293,7 @@ FindIt:Register("spell")
 
 FindIt.talent = {
 	name = "Talent",
+	file = "Talent.dbc",
 	max = 20000,
 	getInfo = function(self, id)
 		local name, rank = LibWeagleTooltip:GetTooltipLine("talent:" .. id, 1)
@@ -277,6 +307,7 @@ FindIt:Register("talent")
 
 FindIt.title = {
 	name = "Title",
+	file = "CharTitles.dbc",
 	max = GetNumTitles(),
 	getInfo = function(self, id)
 		local name = GetTitleName(id)
@@ -349,6 +380,10 @@ function FindIt:FindObject(type, msg)
 end
 
 SLASH_FINDIT1 = "/findit"
-SlashCmdList["FINDIT"] = function()
-	FindIt:Help()
+SlashCmdList["FINDIT"] = function(msg)
+	if msg == "list" then
+		FindIt:List()
+	else
+		FindIt:Help()
+	end
 end
