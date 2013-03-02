@@ -13,7 +13,7 @@ FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
 FindIt.VERSION = "1.9.0"
 
-local LibWeagleTooltip = LibStub("LibWeagleTooltip-2.0")
+local LibWeagleTooltip = LibStub("LibWeagleTooltip-2.1")
 
 local VERSION, BUILD, COMPILED, TOC = GetBuildInfo()
 BUILD, TOC = tonumber(BUILD), tonumber(TOC)

@@ -2,19 +2,19 @@
 -- LibWeagleTooltip --
 ----------------------
 -- Easily scan and match a tooltip's lines
--- Feedback, questions, adys.wh@gmail.com
+-- Feedback, questions, jerome.leclanche+weagle@gmail.com
 
 -- LibWeagleTooltip is licensed under MIT
 -- Please read the LICENSE file for details
 
 
-local MAJOR = 'LibWeagleTooltip-2.0'
+local MAJOR = "LibWeagleTooltip-2.1"
 local MINOR = 20
 
 local LibWeagleTooltip, oldminor = LibStub:NewLibrary(MAJOR, MINOR)
 if not LibWeagleTooltip then return end -- no upgrade needed
 
-LibWeagleTooltip.tt = CreateFrame("GameTooltip", "WeagleLibTooltip", UIParent, "GameTooltipTemplate")
+LibWeagleTooltip.tt = CreateFrame("GameTooltip", "LWTTooltip", UIParent, "GameTooltipTemplate")
 
 LibWeagleTooltip.tt:SetOwner(UIParent, "ANCHOR_PRESERVE")
 LibWeagleTooltip.tt:SetPoint("CENTER", "UIParent")
@@ -34,14 +34,14 @@ end
 
 function LibWeagleTooltip:ScanTooltip(link)
 	self:Prepare(link)
-	
-	local lines = WeagleLibTooltip:NumLines()
+
+	local lines = LWTTooltip:NumLines()
 	local tooltiptxt = ""
-	
+
 	for i = 1, lines do
-		local left = _G["WeagleLibTooltipTextLeft"..i]:GetText()
-		local right = _G["WeagleLibTooltipTextRight"..i]:GetText()
-		
+		local left = _G["LWTTooltipTextLeft" .. i]:GetText()
+		local right = _G["LWTTooltipTextRight" .. i]:GetText()
+
 		if left then
 			tooltiptxt = tooltiptxt .. left
 			if right then
@@ -53,7 +53,7 @@ function LibWeagleTooltip:ScanTooltip(link)
 			tooltiptxt = tooltiptxt .. right .. "\n"
 		end
 	end
-	
+
 	self:Hide()
 	return tooltiptxt
 end
@@ -61,12 +61,12 @@ end
 function LibWeagleTooltip:GetTooltipLine(link, line, side)
 	side = side or "Left"
 	self:Prepare(link)
-	
-	local lines = WeagleLibTooltip:NumLines()
+
+	local lines = LWTTooltip:NumLines()
 	if line > lines then return self:Hide() end
-	
-	local text = _G["WeagleLibTooltipText"..side..line]:GetText()
-	
+
+	local text = _G["LWTTooltipText" .. side .. line]:GetText()
+
 	self:Hide()
 	return text
 end
@@ -74,11 +74,11 @@ end
 function LibWeagleTooltip:GetTooltipLines(link, ...)
 	local lines = {}
 	self:Prepare(link)
-	
+
 	for k,v in pairs({...}) do
-		lines[#lines+1] = _G["WeagleLibTooltipTextLeft"..v]:GetText()
+		lines[#lines+1] = _G["LWTTooltipTextLeft" .. v]:GetText()
 	end
-	
+
 	self:Hide()
 	return unpack(lines)
 end
