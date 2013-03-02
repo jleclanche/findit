@@ -196,12 +196,20 @@ FindIt.map = {
 	name = "Map",
 	max = 2000,
 	getInfo = function(self, id)
-		SetMapByID(DUROTAR_MAP) -- Reset the map to Durotar
-		local durotar = GetMapInfo()
-		SetMapByID(id)
-		local name = GetMapInfo()
-		if id == 4 or name ~= durotar then
-			return name, ("|cffffff00%s|r"):format(name)
+		local name
+		if GetMapNameByID then -- New in Mists of Pandaria
+			name = GetMapNameByID(id)
+			if name then
+				return name, ("|cffffff00%s|r"):format(name)
+			end
+		else
+			SetMapByID(DUROTAR_MAP) -- Reset the map to Durotar
+			local durotar = GetMapInfo()
+			SetMapByID(id)
+			name = GetMapInfo()
+			if id == 4 or name ~= durotar then
+				return name, ("|cffffff00%s|r"):format(name)
+			end
 		end
 	end,
 }

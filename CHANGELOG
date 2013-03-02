@@ -1,3 +1,6 @@
+FindIt 1.10.0:
+ * Optimize /findmap using GetMapNameByID() if available
+
 FindIt 1.9.0:
  * Add /findarea
  * /findcurrency now works with all currencies, not just those already seen by the character
