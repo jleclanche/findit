@@ -11,7 +11,7 @@
 FindIt = select(2, ...)
 FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
-FindIt.VERSION = "1.8.0"
+FindIt.VERSION = "1.9.0"
 
 local LibWeagleTooltip = LibStub("LibWeagleTooltip-2.0")
 
@@ -19,6 +19,7 @@ local VERSION, BUILD, COMPILED, TOC = GetBuildInfo()
 BUILD, TOC = tonumber(BUILD), tonumber(TOC)
 
 local PLAIN_LETTER = 8383 -- Plain Letter stationery item id, "always" cached (for enchants)
+local DUROTAR_MAP = 4 -- Used as base map to reset it
 
 function FindIt:Print(...)
 	print(self.CNAME.. ":", ...)
@@ -195,7 +196,7 @@ FindIt.map = {
 	name = "Map",
 	max = 2000,
 	getInfo = function(self, id)
-		SetMapByID(4) -- Reset the map to Durotar
+		SetMapByID(DUROTAR_MAP) -- Reset the map to Durotar
 		local durotar = GetMapInfo()
 		SetMapByID(id)
 		local name = GetMapInfo()
@@ -307,9 +308,9 @@ local function findname(obj, arg)
 	return ret
 end
 
-function FindIt:FindObject(ftype, msg)
-	if not msg or msg == "" then return self:Print("Usage: /find"..ftype.." (id|[min-max]|name) - /findit for help" ) end
-	local obj = FindIt[ftype]
+function FindIt:FindObject(type, msg)
+	if not msg or msg == "" then return self:Print("Usage: /find" .. type .. " (id|[min-max]|name) - /findit for help") end
+	local obj = FindIt[type]
 	found = {}
 
 	if msg:match("%d+%-%d+") then

@@ -4,7 +4,7 @@
 ## Version: 1.9.0
 ## Notes: Find items, spells, achievements...
 ## eMail: jerome.leclanche+findit@gmail.com
-## URL: http://github.com/adys/findit
+## URL: https://github.com/Adys/FindIt
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 
