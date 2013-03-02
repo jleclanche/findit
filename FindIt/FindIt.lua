@@ -36,6 +36,16 @@ function FindIt:Help()
 	self:Print(self.NAME, self.VERSION, "by Adys.")
 end
 
+function FindIt:Register(type, func)
+	local utype = type:upper()
+	_G["SLASH_FIND" .. utype .. "1"] = "/find" .. type
+	if not func then
+		func = function(msg)
+			FindIt:FindObject(type, msg)
+		end
+	end
+	SlashCmdList["FIND" .. utype] = func
+end
 
 
 FindIt.achievement = {
@@ -48,6 +58,8 @@ FindIt.achievement = {
 		end
 	end,
 }
+FindIt:Register("achievement")
+SLASH_FINDACHIEVEMENT2 = "/findach"
 
 FindIt.area = {
 	name = "Area",
@@ -59,6 +71,7 @@ FindIt.area = {
 		end
 	end,
 }
+FindIt:Register("area")
 
 FindIt.creature = {
 	name = "Creature",
@@ -81,6 +94,7 @@ FindIt.creature = {
 		return "0xF130%04X00000000" -- cataclysm format
 	end)(),
 }
+FindIt:Register("creature")
 
 FindIt.currency = {
 	name = "Currency",
@@ -91,6 +105,7 @@ FindIt.currency = {
 		return name, link
 	end,
 }
+FindIt:Register("currency")
 
 FindIt.dungeon = {
 	name = "Dungeon",
@@ -102,6 +117,7 @@ FindIt.dungeon = {
 		end
 	end,
 }
+FindIt:Register("dungeon")
 
 FindIt.enchant = {
 	name = "Enchant",
@@ -113,6 +129,7 @@ FindIt.enchant = {
 		end
 	end,
 }
+FindIt:Register("enchant")
 
 FindIt.faction = {
 	name = "Faction",
@@ -124,6 +141,7 @@ FindIt.faction = {
 		end
 	end,
 }
+FindIt:Register("faction")
 
 FindIt.glyph = {
 	name = "Glyph",
@@ -142,6 +160,7 @@ FindIt.glyph = {
 		return name, link
 	end,
 }
+FindIt:Register("instance")
 
 FindIt.instance = {
 	name = "Instance",
@@ -165,6 +184,12 @@ FindIt.item = {
 		return name, link
 	end,
 }
+FindIt:Register("item", function(msg)
+	if not tonumber(msg) and TOC >= 40000 and TOC <= 50000 then
+		return FindIt:Print("Non-ID lookups for items are disabled in the 4.x client due to a bug in the WoW API. Blame Blizzard.")
+	end
+	FindIt:FindObject("item", msg)
+end)
 
 FindIt.map = {
 	name = "Map",
@@ -179,6 +204,7 @@ FindIt.map = {
 		end
 	end,
 }
+FindIt:Register("map")
 
 FindIt.quest = {
 	name = "Quest",
@@ -192,6 +218,12 @@ FindIt.quest = {
 		return name, link
 	end,
 }
+FindIt:Register("quest", function(msg)
+	if not tonumber(msg) then
+		return FindIt:Print("Non-ID lookups for quests are disabled because they cause disconnects. Blame Blizzard.")
+	end
+	FindIt:FindObject("quest", msg)
+end)
 
 FindIt.spell = {
 	name = "Spell",
@@ -204,6 +236,7 @@ FindIt.spell = {
 		end
 	end,
 }
+FindIt:Register("spell")
 
 FindIt.talent = {
 	name = "Talent",
@@ -216,6 +249,7 @@ FindIt.talent = {
 		return name, link
 	end,
 }
+FindIt:Register("talent")
 
 FindIt.title = {
 	name = "Title",
@@ -231,6 +265,7 @@ FindIt.title = {
 		return name, ("|cffffff00%s|r"):format(fullname)
 	end,
 }
+FindIt:Register("title")
 
 local function findrange(obj, first, last)
 	local ret = {}
@@ -299,86 +334,4 @@ end
 SLASH_FINDIT1 = "/findit"
 SlashCmdList["FINDIT"] = function()
 	FindIt:Help()
-end
-
-SLASH_FINDACH1, SLASH_FINDACH2 = "/findach", "/findachievement"
-SlashCmdList["FINDACH"] = function(msg)
-	FindIt:FindObject("achievement", msg)
-end
-
-SLASH_FINDAREA1 = "/findarea"
-SlashCmdList["FINDAREA"] = function(msg)
-	FindIt:FindObject("area", msg)
-end
-
-SLASH_FINDCREATURE1 = "/findcreature"
-SlashCmdList["FINDCREATURE"] = function(msg)
-	FindIt:FindObject("creature", msg)
-end
-
-SLASH_FINDCURRENCY1 = "/findcurrency"
-SlashCmdList["FINDCURRENCY"] = function(msg)
-	FindIt:FindObject("currency", msg)
-end
-
-SLASH_FINDDUNGEON1 = "/finddungeon"
-SlashCmdList["FINDDUNGEON"] = function(msg)
-	FindIt:FindObject("dungeon", msg)
-end
-
-SLASH_FINDENCHANT1 = "/findenchant"
-SlashCmdList["FINDENCHANT"] = function(msg)
-	FindIt:FindObject("enchant", msg)
-end
-
-SLASH_FINDFACTION1 = "/findfaction"
-SlashCmdList["FINDFACTION"] = function(msg)
-	FindIt:FindObject("faction", msg)
-end
-
-SLASH_FINDGLYPH1 = "/findglyph"
-SlashCmdList["FINDGLYPH"] = function(msg)
-	FindIt:FindObject("glyph", msg)
-end
-
-SLASH_FINDINSTANCE1 = "/findinstance"
-SlashCmdList["FINDINSTANCE"] = function(msg)
-	FindIt:FindObject("instance", msg)
-end
-
-SLASH_FINDITEM1 = "/finditem"
-SlashCmdList["FINDITEM"] = function(msg)
-	if not tonumber(msg) and TOC >= 40000 and TOC <= 50000 then
-		return FindIt:Print("Non-ID lookups for items are disabled in the 4.x client due to a bug in the WoW API. Blame Blizzard.")
-	end
-	FindIt:FindObject("item", msg)
-end
-
-SLASH_FINDQUEST1 = "/findquest"
-SlashCmdList["FINDQUEST"] = function(msg)
-	if not tonumber(msg) then
-		return FindIt:Print("Non-ID lookups for quests are disabled because they cause disconnects. Blame Blizzard.")
-	end
-	FindIt:FindObject("quest", msg)
-end
-
-SLASH_FINDSPELL1 = "/findspell"
-SlashCmdList["FINDSPELL"] = function(msg)
-	FindIt:FindObject("spell", msg)
-end
-
-SLASH_FINDMAP1 = "/findmap"
-SlashCmdList["FINDMAP"] = function(msg)
-	FindIt:FindObject("map", msg)
-end
-
-
-SLASH_FINDTALENT1 = "/findtalent"
-SlashCmdList["FINDTALENT"] = function(msg)
-	FindIt:FindObject("talent", msg)
-end
-
-SLASH_FINDTITLE1 = "/findtitle"
-SlashCmdList["FINDTITLE"] = function(msg)
-	FindIt:FindObject("title", msg)
 end
