@@ -74,6 +74,21 @@ FindIt.area = {
 }
 FindIt:Register("area")
 
+FindIt.battlepetability = { -- BattlePetAbility.db2
+	name = "Battle Pet Ability",
+	max = 3000,
+	getInfo = function(self, id)
+		local id, name, icon = C_PetBattles.GetAbilityInfoByID(id)
+		if name then
+			-- Link format: battlePetAbil:<id>:<health>:<power>:<speed>
+			local link = ("|cff4e96f7|HbattlePetAbil:%s:100:0:0|h[%s]|h|r"):format(id, name)
+			return name, link
+		end
+	end,
+}
+FindIt:Register("battlepetability")
+SLASH_FINDBATTLEPETABILITY2 = "/findbpa"
+
 FindIt.creature = {
 	name = "Creature",
 	max = 60000,

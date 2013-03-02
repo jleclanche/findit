@@ -1,5 +1,7 @@
 FindIt 1.10.0:
+ * Add /findbattlepetability (/findbpa for short)
  * Optimize /findmap using GetMapNameByID() if available
+ * Code cleanup
 
 FindIt 1.9.0:
  * Add /findarea
