@@ -11,7 +11,7 @@
 FindIt = select(2, ...)
 FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
-FindIt.VERSION = "1.9.0"
+FindIt.VERSION = "1.10.0"
 FindIt.commands = {}
 
 local LibWeagleTooltip = LibStub("LibWeagleTooltip-2.1")
@@ -23,7 +23,7 @@ local PLAIN_LETTER = 8383 -- Plain Letter stationery item id, "always" cached (f
 local DUROTAR_MAP = 4 -- Used as base map to reset it
 
 function FindIt:Print(...)
-	print(self.CNAME.. ":", ...)
+	print(self.CNAME .. ":", ...)
 end
 
 function FindIt:Help()
