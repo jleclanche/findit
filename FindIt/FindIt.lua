@@ -13,6 +13,7 @@ FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
 FindIt.VERSION = "1.10.0"
 FindIt.commands = {}
+FindIt.MAXRESULTS = 1000
 
 local LibWeagleTooltip = LibStub("LibWeagleTooltip-2.1")
 
@@ -372,11 +373,15 @@ function FindIt:FindObject(type, msg)
 		found = findname(obj, msg)
 	end
 
-	for k, v in pairs(found) do
-		self:Print(obj.name .. " #" .. v.id, v.link)
-	end
 	local amt = #found
-	self:Print(amt .. " matches.")
+	for i = max(1, amt - self.MAXRESULTS), amt do
+		self:Print(obj.name .. " #" .. found[i].id, found[i].link)
+	end
+	if amt > self.MAXRESULTS then
+		self:Print(amt .. " matches (only displaying the last " .. self.MAXRESULTS .. " results).")
+	else
+		self:Print(amt .. " matches.")
+	end
 end
 
 SLASH_FINDIT1 = "/findit"
