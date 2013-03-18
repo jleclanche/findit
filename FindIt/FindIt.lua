@@ -92,6 +92,22 @@ FindIt.area = {
 }
 FindIt:Register("area")
 
+FindIt.battlepet= {
+	name = "Battle Pet",
+	file = "BattlePetSpecies.db2",
+	max = 3000,
+	getInfo = function(self, id)
+		local name, icon = C_PetJournal.GetPetInfoBySpeciesID(id)
+		if name and name ~= "" then -- some entries, such as id #71 and #73, are empty
+			-- Link format: battlepet:<id>:<level>:<rarity>:<health>:<power>:<speed>:<guid>
+			local link = ("|cffffd200|Hbattlepet:%s:1:-1:100|h[%s]|h|r"):format(id, name)
+			return name, link
+		end
+	end,
+}
+FindIt:Register("battlepet")
+SLASH_FINDBATTLEPET2 = "/findbp"
+
 FindIt.battlepetability = {
 	name = "Battle Pet Ability",
 	file = "BattlePetAbility.db2",
