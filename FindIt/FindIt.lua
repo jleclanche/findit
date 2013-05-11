@@ -294,6 +294,19 @@ FindIt:Register("quest", function(msg)
 	FindIt:FindObject("quest", msg)
 end)
 
+FindIt.spec = {
+	name = "Spec",
+	file = "SpecializationSpells.dbc",
+	max = 500,
+	getInfo = function(self, id)
+		local id, name, description, icon, type, class = GetSpecializationInfoByID(id)
+		if id then
+			return name, ("|cffffff00%s|r"):format(name)
+		end
+	end,
+}
+FindIt:Register("spec")
+
 FindIt.spell = {
 	name = "Spell",
 	file = "Spell.dbc",

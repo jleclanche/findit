@@ -1,3 +1,7 @@
+FindIt 1.11.0:
+ * Add /findspec
+ * Display a maximum of 1000 results on any search (even match all)
+
 FindIt 1.10.0:
  * Add /findbattlepetability (/findbpa for short)
  * Add /findit list to list all available commands
