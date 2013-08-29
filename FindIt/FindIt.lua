@@ -179,6 +179,7 @@ FindIt.enchant = {
 	max = 10000,
 	getInfo = function(self, id)
 		local name = LibWeagleTooltip:GetTooltipLine(("item:%i:%i"):format(PLAIN_LETTER, id), 2)
+		-- TODO strip away ENCHANTED_TOOLTIP_LINE
 		if name then
 			return name, ("|cffffff00%s|r"):format(name)
 		end
