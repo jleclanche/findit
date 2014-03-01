@@ -2,7 +2,7 @@
 -- LibWeagleTooltip --
 ----------------------
 -- Easily scan and match a tooltip's lines
--- Feedback, questions, jerome.leclanche+weagle@gmail.com
+-- Feedback, questions, jerome@leclan.ch
 
 -- LibWeagleTooltip is licensed under MIT
 -- Please read the LICENSE file for details

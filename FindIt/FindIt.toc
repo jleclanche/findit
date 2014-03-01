@@ -1,10 +1,10 @@
-## Interface: 50300
+## Interface: 50400
 ## Title: FindIt
 ## Author: Adys
 ## Version: 1.11.0
 ## Notes: Find items, spells, achievements...
-## eMail: jerome.leclanche+findit@gmail.com
-## URL: https://github.com/Adys/FindIt
+## eMail: jerome@leclan.ch
+## URL: https://github.com/jleclanche/FindIt
 ## LoadOnDemand: 0
 ## DefaultState: enabled
 

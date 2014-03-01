@@ -3,7 +3,7 @@
 ------------
 -- Find items, spells, achievements and several more
 -- from the chat window.
--- Feedback, questions, jerome.leclanche+findit@gmail.com
+-- Feedback, questions, jerome@leclan.ch
 
 -- FindIt is licensed under MIT
 -- Please read the LICENSE file for details
