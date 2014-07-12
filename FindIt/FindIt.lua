@@ -187,6 +187,19 @@ FindIt.enchant = {
 }
 FindIt:Register("enchant")
 
+FindIt.encounter = {
+	name = "Encounter",
+	file = "JournalEncounter.dbc",
+	max = 10000,
+	getInfo = function(self, id)
+		local name, description, encounterID, rootSectionID, link = EJ_GetEncounterInfo(id)
+		if name then
+			return name, link
+		end
+	end,
+}
+FindIt:Register("encounter")
+
 FindIt.faction = {
 	name = "Faction",
 	file = "Faction.dbc",
