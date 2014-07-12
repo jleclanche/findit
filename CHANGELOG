@@ -1,4 +1,5 @@
 FindIt 1.12.0:
+ * Add /findencounter
  * Increase /findcreature max id to 100000
 
 FindIt 1.11.0:
