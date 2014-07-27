@@ -13,7 +13,7 @@ FindIt.NAME = select(1, ...)
 FindIt.CNAME = "|cff33ff99" .. FindIt.NAME .. "|r"
 FindIt.VERSION = GetAddOnMetadata("FindIt", "Version")
 FindIt.commands = {}
-FindIt.MAXRESULTS = 1000
+FindIt.MAXRESULTS = DEFAULT_CHAT_FRAME:GetMaxLines()
 
 local LibWeagleTooltip = LibStub("LibWeagleTooltip-2.1")
 
