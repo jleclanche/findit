@@ -338,7 +338,7 @@ FindIt:Register("spell")
 FindIt.talent = {
 	name = "Talent",
 	file = "Talent.dbc",
-	max = 20000,
+	max = 40000,
 	getInfo = function(self, id)
 		local name, rank = LibWeagleTooltip:GetTooltipLine("talent:" .. id, 1)
 		if not name or name == "Word of Recall (OLD)" then return end -- Invalid tooltips' names.. go figure.
