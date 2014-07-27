@@ -231,7 +231,7 @@ FindIt.glyph = {
 		return name, link
 	end,
 }
-FindIt:Register("instance")
+FindIt:Register("glyph")
 
 FindIt.instance = {
 	name = "Instance",
@@ -247,6 +247,7 @@ FindIt.instance = {
 		return name, ("|cffff8000|H%s|h[%s]|h|r"):format(link, name)
 	end,
 }
+FindIt:Register("instance")
 
 FindIt.item = {
 	name = "Item",

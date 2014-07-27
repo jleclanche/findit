@@ -1,3 +1,6 @@
+FindIt 1.13.0:
+ * Fix /findglyph and /findinstance
+
 FindIt 1.12.0:
  * Add /findencounter
  * Increase /findcreature max id to 100000
