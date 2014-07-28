@@ -144,6 +144,8 @@ FindIt.creature = {
 			return "0xF13000%04X000000" -- 3.3.x format
 		elseif TOC < 60000 then
 			return "0xF13%05X00000000" -- Cataclysm/MoP format
+		else
+			return "Creature:0:976:0:11:%i:0000000000" -- WoD format
 		end
 	end)(),
 }
