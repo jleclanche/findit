@@ -305,12 +305,7 @@ FindIt.quest = {
 		return name, link
 	end,
 }
-FindIt:Register("quest", function(msg)
-	if not tonumber(msg) then
-		return FindIt:Print("Non-ID lookups for quests are disabled because they cause disconnects. Blame Blizzard.")
-	end
-	FindIt:FindObject("quest", msg)
-end)
+FindIt:Register("quest")
 
 FindIt.spec = {
 	name = "Spec",
