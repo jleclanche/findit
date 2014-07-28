@@ -142,8 +142,9 @@ FindIt.creature = {
 			return "0xF13000%04X000000" -- TBC/WLK format
 		elseif TOC < 40000 then
 			return "0xF13000%04X000000" -- 3.3.x format
+		elseif TOC < 60000 then
+			return "0xF13%05X00000000" -- Cataclysm/MoP format
 		end
-		return "0xF130%04X00000000" -- cataclysm format
 	end)(),
 }
 FindIt:Register("creature")
