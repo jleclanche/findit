@@ -216,6 +216,19 @@ FindIt.faction = {
 }
 FindIt:Register("faction")
 
+FindIt.garrbuilding = {
+	name = "Garrison Building",
+	file = "GarrBuilding.db2",
+	max = 3000,
+	getInfo = function(self, id)
+		local _, name = C_Garrison.GetBuildingInfo(id)
+		if name then
+			return name, ("|cffffff00%s|r"):format(name)
+		end
+	end,
+}
+FindIt:Register("garrbuilding")
+
 FindIt.glyph = {
 	name = "Glyph",
 	file = "GlyphProperties.dbc",
