@@ -1,5 +1,9 @@
 FindIt 1.13.0:
+ * Add /findgarrbuilding (Garrison Buildings)
+ * Fix /findcreature for NPCs above 65536
  * Fix /findglyph and /findinstance
+ * Update /findcreature to work with WoD-style GUIDs
+ * Update TOC for 6.0.2
 
 FindIt 1.12.0:
  * Add /findencounter

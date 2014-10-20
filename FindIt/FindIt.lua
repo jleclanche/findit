@@ -229,6 +229,20 @@ FindIt.garrbuilding = {
 }
 FindIt:Register("garrbuilding")
 
+FindIt.garrfollower = {
+	name = "Garrison Follower",
+	file = "GarrFollower.db2",
+	max = 3000,
+	getInfo = function(self, id)
+		local t = C_Garrison.GetFollowerInfo(id)
+		if t then
+			local link = C_Garrison.GetFollowerLinkByID(id)
+			return t.name, link
+		end
+	end,
+}
+FindIt:Register("garrfollower")
+
 FindIt.glyph = {
 	name = "Glyph",
 	file = "GlyphProperties.dbc",
