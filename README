@@ -15,5 +15,7 @@ Added with 1.9: /findarea
 Added with 1.10: /findbattlepetability
 Added with 1.11: /findspec
 Added with 1.12: /findencounter
+Added with 1.13: /findgarrbuilding, /findgarrfollower
+Added with 1.14: /findarchrace
 
 The FindIt repository is available on GitHub: https://github.com/jleclanche/FindIt
