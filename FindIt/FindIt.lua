@@ -380,6 +380,19 @@ FindIt.talent = {
 }
 FindIt:Register("talent")
 
+FindIt.archrace = {
+	name = "Archaeology Race",
+	file = "ResearchBranch.dbc",
+	max = 5000,
+	getInfo = function(self, id)
+		local name, icon, _ = GetArchaeologyRaceInfoByID(id)
+		if name == "UNKNOWN" then return end
+
+		return name, ("|cffffff00%s|r"):format(name)
+	end
+}
+FindIt:Register("archrace")
+
 FindIt.title = {
 	name = "Title",
 	file = "CharTitles.dbc",

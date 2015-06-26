@@ -1,4 +1,5 @@
 FindIt 1.14.0:
+ * Add /findarchrace (Archaeology Race)
  * Improve /findtalent performance on 6.x
 
 FindIt 1.13.0:
