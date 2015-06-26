@@ -1,6 +1,7 @@
 FindIt 1.14.0:
  * Add /findarchrace (Archaeology Race)
  * Improve /findtalent performance on 6.x
+ * Update TOC for 6.2.0
 
 FindIt 1.13.0:
  * Add /findgarrbuilding
