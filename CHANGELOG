@@ -1,3 +1,6 @@
+FindIt 1.14.0:
+ * Improve /findtalent performance on 6.x
+
 FindIt 1.13.0:
  * Add /findgarrbuilding
  * Add /findgarrfollower

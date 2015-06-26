@@ -366,11 +366,16 @@ FindIt.talent = {
 	file = "Talent.dbc",
 	max = 40000,
 	getInfo = function(self, id)
-		local name, rank = LibWeagleTooltip:GetTooltipLine("talent:" .. id, 1)
-		if not name or name == "Word of Recall (OLD)" then return end -- Invalid tooltips' names.. go figure.
-		local link = ("|cff4e96f7|Htalent:%i:-1|h[%s]|h|r"):format(id, name)
+		local name, _
+		if TOC < 60000 then
+			name, _ = LibWeagleTooltip:GetTooltipLine("talent:" .. id, 1)
+			if not name or name == "Word of Recall (OLD)" then return end -- Invalid tooltips' names.. go figure.
+		else
+			_, name, _ = GetTalentInfoByID(id)
+			if not name then return end
+		end
 
-		return name, link
+		return name, ("|cff4e96f7|Htalent:%i:-1|h[%s]|h|r"):format(id, name)
 	end,
 }
 FindIt:Register("talent")
