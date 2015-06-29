@@ -1,3 +1,6 @@
+FindIt 1.14.1:
+ * Increase /finddungeon and /findcurrency max ids to 5000
+
 FindIt 1.14.0:
  * Add /findarchrace (Archaeology Race)
  * Improve /findtalent performance on 6.x

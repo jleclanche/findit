@@ -154,7 +154,7 @@ FindIt:Register("creature")
 FindIt.currency = {
 	name = "Currency",
 	file = "Currency.dbc",
-	max = 1000,
+	max = 5000,
 	getInfo = function(self, id)
 		local name = GetCurrencyInfo(id)
 		local link = GetCurrencyLink(id)
@@ -166,7 +166,7 @@ FindIt:Register("currency")
 FindIt.dungeon = {
 	name = "Dungeon",
 	file = "LfgDungeons.dbc",
-	max = 1000,
+	max = 5000,
 	getInfo = function(self, id)
 		local name = GetLFGDungeonInfo(id)
 		if name then
