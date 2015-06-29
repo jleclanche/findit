@@ -68,7 +68,7 @@ end
 FindIt.achievement = {
 	name = "Achievement",
 	file = "Achievement.dbc",
-	max = 10000,
+	max = 20000,
 	getInfo = function(self, id)
 		if pcall(GetAchievementInfo, id) then
 			local name = select(2, GetAchievementInfo(id))
