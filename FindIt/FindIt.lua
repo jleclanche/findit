@@ -98,7 +98,9 @@ FindIt.battlepet= {
 	max = 3000,
 	getInfo = function(self, id)
 		local name, icon = C_PetJournal.GetPetInfoBySpeciesID(id)
-		if name and name ~= "" then -- some entries, such as id #71 and #73, are empty
+		-- some entries, such as id #71 and #73, are empty
+		-- and in 6.2 the ID is returned even if the result doesn't exist...
+		if name and name ~= "" and type(name) == "string" then
 			-- Link format: battlepet:<id>:<level>:<rarity>:<health>:<power>:<speed>:<guid>
 			local link = ("|cffffd200|Hbattlepet:%s:1:-1:100|h[%s]|h|r"):format(id, name)
 			return name, link

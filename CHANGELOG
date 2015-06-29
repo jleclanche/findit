@@ -1,5 +1,6 @@
 FindIt 1.14.1:
  * Increase /finddungeon and /findcurrency max ids to 5000
+ * Fix /findbattlepet bug caused by API change
 
 FindIt 1.14.0:
  * Add /findarchrace (Archaeology Race)
