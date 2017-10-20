@@ -68,7 +68,7 @@ end
 FindIt.achievement = {
 	name = "Achievement",
 	file = "Achievement.dbc",
-	max = 20000,
+	max = 50000,
 	getInfo = function(self, id)
 		if pcall(GetAchievementInfo, id) then
 			local name = select(2, GetAchievementInfo(id))
@@ -82,7 +82,7 @@ SLASH_FINDACHIEVEMENT2 = "/findach"
 FindIt.area = {
 	name = "Area",
 	file = "Area.dbc",
-	max = 1000,
+	max = 5000,
 	getInfo = function(self, id)
 		local name = GetMapNameByID(id)
 		if name then
@@ -92,10 +92,10 @@ FindIt.area = {
 }
 FindIt:Register("area")
 
-FindIt.battlepet= {
+FindIt.battlepet = {
 	name = "Battle Pet",
 	file = "BattlePetSpecies.db2",
-	max = 3000,
+	max = 10000,
 	getInfo = function(self, id)
 		local name, icon = C_PetJournal.GetPetInfoBySpeciesID(id)
 		-- some entries, such as id #71 and #73, are empty
@@ -113,7 +113,7 @@ SLASH_FINDBATTLEPET2 = "/findbp"
 FindIt.battlepetability = {
 	name = "Battle Pet Ability",
 	file = "BattlePetAbility.db2",
-	max = 3000,
+	max = 10000,
 	getInfo = function(self, id)
 		local id, name, icon = C_PetBattles.GetAbilityInfoByID(id)
 		if name then
@@ -129,7 +129,7 @@ SLASH_FINDBATTLEPETABILITY2 = "/findbpa"
 FindIt.creature = {
 	name = "Creature",
 	file = "creaturecache.wdb",
-	max = 100000,
+	max = 200000,
 	getInfo = function(self, id)
 		id = tonumber(id)
 		local guid = self.guidfmt:format(id)
@@ -156,7 +156,7 @@ FindIt:Register("creature")
 FindIt.currency = {
 	name = "Currency",
 	file = "Currency.dbc",
-	max = 5000,
+	max = 10000,
 	getInfo = function(self, id)
 		local name = GetCurrencyInfo(id)
 		local link = GetCurrencyLink(id)
@@ -168,7 +168,7 @@ FindIt:Register("currency")
 FindIt.dungeon = {
 	name = "Dungeon",
 	file = "LfgDungeons.dbc",
-	max = 5000,
+	max = 10000,
 	getInfo = function(self, id)
 		local name = GetLFGDungeonInfo(id)
 		if name then
@@ -181,7 +181,7 @@ FindIt:Register("dungeon")
 FindIt.enchant = {
 	name = "Enchant",
 	file = "SpellItemEnchantment.dbc",
-	max = 10000,
+	max = 20000,
 	getInfo = function(self, id)
 		local name = LibWeagleTooltip:GetTooltipLine(("item:%i:%i"):format(PLAIN_LETTER, id), 2)
 		-- TODO strip away ENCHANTED_TOOLTIP_LINE
@@ -195,7 +195,7 @@ FindIt:Register("enchant")
 FindIt.encounter = {
 	name = "Encounter",
 	file = "JournalEncounter.dbc",
-	max = 10000,
+	max = 20000,
 	getInfo = function(self, id)
 		local name, description, encounterID, rootSectionID, link = EJ_GetEncounterInfo(id)
 		if name then
@@ -208,7 +208,7 @@ FindIt:Register("encounter")
 FindIt.faction = {
 	name = "Faction",
 	file = "Faction.dbc",
-	max = 2000,
+	max = 10000,
 	getInfo = function(self, id)
 		local name = GetFactionInfoByID(id)
 		if name then
@@ -221,7 +221,7 @@ FindIt:Register("faction")
 FindIt.garrbuilding = {
 	name = "Garrison Building",
 	file = "GarrBuilding.db2",
-	max = 3000,
+	max = 5000,
 	getInfo = function(self, id)
 		local _, name = C_Garrison.GetBuildingInfo(id)
 		if name then
@@ -234,7 +234,7 @@ FindIt:Register("garrbuilding")
 FindIt.garrfollower = {
 	name = "Garrison Follower",
 	file = "GarrFollower.db2",
-	max = 3000,
+	max = 10000,
 	getInfo = function(self, id)
 		local t = C_Garrison.GetFollowerInfo(id)
 		if t then
@@ -248,7 +248,7 @@ FindIt:Register("garrfollower")
 FindIt.glyph = {
 	name = "Glyph",
 	file = "GlyphProperties.dbc",
-	max = 3000,
+	max = 10000,
 	getInfo = function(self, id)
 		local name, link
 		if TOC > 50000 then
@@ -268,7 +268,7 @@ FindIt:Register("glyph")
 FindIt.instance = {
 	name = "Instance",
 	file = "Map.dbc",
-	max = 1500,
+	max = 10000,
 	getInfo = function(self, id)
 		local guid = UnitGUID("player"):sub(3) -- Remove 0x prefix
 		local link = ("instancelock:%s:%i:0:0"):format(guid, id)
@@ -300,7 +300,7 @@ end)
 FindIt.map = {
 	name = "Map",
 	file = "WorldMapArea.dbc",
-	max = 2000,
+	max = 20000,
 	getInfo = function(self, id)
 		local name
 		if GetMapNameByID then -- New in Mists of Pandaria
@@ -324,7 +324,7 @@ FindIt:Register("map")
 FindIt.quest = {
 	name = "Quest",
 	file = "questcache.wdb",
-	max = 50000,
+	max = 100000,
 	getInfo = function(self, id)
 		local name = LibWeagleTooltip:GetTooltipLine("quest:" .. id, 1)
 		if not name then return end
@@ -339,7 +339,7 @@ FindIt:Register("quest")
 FindIt.spec = {
 	name = "Spec",
 	file = "SpecializationSpells.dbc",
-	max = 500,
+	max = 1000,
 	getInfo = function(self, id)
 		local id, name, description, icon, type, class = GetSpecializationInfoByID(id)
 		if id then
@@ -352,7 +352,7 @@ FindIt:Register("spec")
 FindIt.spell = {
 	name = "Spell",
 	file = "Spell.dbc",
-	max = 150000,
+	max = 300000,
 	getInfo = function(self, id)
 		local name = GetSpellInfo(id)
 		if name then
@@ -366,7 +366,7 @@ FindIt:Register("spell")
 FindIt.talent = {
 	name = "Talent",
 	file = "Talent.dbc",
-	max = 40000,
+	max = 100000,
 	getInfo = function(self, id)
 		local name, _
 		if TOC < 60000 then
@@ -385,7 +385,7 @@ FindIt:Register("talent")
 FindIt.archrace = {
 	name = "Archaeology Race",
 	file = "ResearchBranch.dbc",
-	max = 5000,
+	max = 10000,
 	getInfo = function(self, id)
 		local name, icon, _ = GetArchaeologyRaceInfoByID(id)
 		if name == "UNKNOWN" then return end
