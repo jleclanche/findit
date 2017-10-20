@@ -1,4 +1,4 @@
-## Interface: 60300
+## Interface: 70300
 ## Title: FindIt
 ## Author: Adys
 ## Version: 1.14.0
